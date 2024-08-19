@@ -31,4 +31,13 @@ public class ReviewService {
                 .map(ReviewSummaryResponse::of)
                 .collect(Collectors.toList());
     }
+
+    public List<ReviewSummaryResponse> getSimilarReviews(String major, String part, double gpa) {
+        double minGpa = gpa - 0.2;
+        double maxGpa = gpa + 0.2;
+        List<Review> similarReviews = reviewRepository.findSimilarReviews(major, part, minGpa, maxGpa);
+        return similarReviews.stream()
+                .map(ReviewSummaryResponse::of)
+                .collect(Collectors.toList());
+    }
 }
