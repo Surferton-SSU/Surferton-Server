@@ -16,7 +16,4 @@ public class Activity {
 
     private String name; // 활동 이름
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id")
-    private Review review; // Review와의 관계 설정
 }

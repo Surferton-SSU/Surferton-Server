@@ -1,9 +1,9 @@
 package com.surferton.server.domain;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Builder;
 
 import java.util.List;
 
@@ -32,12 +32,13 @@ public class Review {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "review_id")
     private List<Activity> activityList;
 
     @Builder
     public Review(String profileImg, String part, String detailPart, String process, String major, double gpa, String enScore,
-                  List<Activity> activityList, String content, String comment, String selfIntroduction, String portfolio, Status status) {
+                  String content, String comment, String selfIntroduction, String portfolio, Status status, List<Activity> activityList) {
         this.profileImg = profileImg;
         this.part = part;
         this.detailPart = detailPart;
@@ -45,12 +46,12 @@ public class Review {
         this.major = major;
         this.gpa = gpa;
         this.enScore = enScore;
-        this.activityList = activityList;
         this.content = content;
         this.comment = comment;
         this.selfIntroduction = selfIntroduction;
         this.portfolio = portfolio;
         this.status = status;
+        this.activityList = activityList;
     }
 
     public static Review create(String profileImg, String part, String detailPart, String process, String major, double gpa, String enScore, List<Activity> activityList,
