@@ -5,10 +5,7 @@ import com.surferton.server.dto.response.ReviewSummaryResponse;
 import com.surferton.server.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,15 @@ public class ReviewController {
     public ResponseEntity<List<ReviewSummaryResponse>> getReviewSummaries() {
         List<ReviewSummaryResponse> reviewSummaries = reviewService.getReviewSummaries();
         return ResponseEntity.ok(reviewSummaries);
+    }
+
+    @GetMapping("/similar")
+    public ResponseEntity<List<ReviewSummaryResponse>> getSimilarReviews(
+            @RequestParam String major,
+            @RequestParam String part,
+            @RequestParam double gpa
+    ) {
+        List<ReviewSummaryResponse> similarReviews = reviewService.getSimilarReviews(major, part, gpa);
+        return ResponseEntity.ok(similarReviews);
     }
 }
