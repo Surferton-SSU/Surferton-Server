@@ -1,13 +1,13 @@
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://surferton.czkei64227l8.ap-northeast-2.rds.amazonaws.com:5432/surferton
-    username: surferton
-    password: surferton
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/./test
+    username: sa
+    password: 1234
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
