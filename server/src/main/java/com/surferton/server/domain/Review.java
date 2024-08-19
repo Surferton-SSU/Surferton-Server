@@ -17,6 +17,7 @@ public class Review {
     @Column(name = "reviewid")
     private Long id;
 
+    private String username;
     private String profileImg;
     private String part;
     private String detailPart;
@@ -37,8 +38,9 @@ public class Review {
     private List<Activity> activityList;
 
     @Builder
-    public Review(String profileImg, String part, String detailPart, String process, String major, double gpa, String enScore,
+    public Review(String username, String profileImg, String part, String detailPart, String process, String major, double gpa, String enScore,
                   String content, String comment, String selfIntroduction, String portfolio, Status status, List<Activity> activityList) {
+        this.username = username;
         this.profileImg = profileImg;
         this.part = part;
         this.detailPart = detailPart;
@@ -54,9 +56,10 @@ public class Review {
         this.activityList = activityList;
     }
 
-    public static Review create(String profileImg, String part, String detailPart, String process, String major, double gpa, String enScore, List<Activity> activityList,
+    public static Review create(String username, String profileImg, String part, String detailPart, String process, String major, double gpa, String enScore, List<Activity> activityList,
                                 String content, String comment, String selfIntroduction, String portfolio, Status status) {
         return Review.builder()
+                .username(username)
                 .profileImg(profileImg)
                 .part(part)
                 .detailPart(detailPart)
